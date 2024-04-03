@@ -42,3 +42,5 @@ export const isAuthenticated = (req, res, next) => {
   }
   res.redirect('/login');
 };
+
+//testing 1 kaitlyn
