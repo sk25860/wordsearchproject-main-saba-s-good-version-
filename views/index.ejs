@@ -11,7 +11,17 @@
     <h2>Wordsearch</h2>
     <div class="content">
       <div id="grid-container">
-
+       <table>
+        <!-- Loop to create 15 rows -->
+        <% for (var i = 0; i < 15; i++) { %>
+            <tr>
+                <!-- Loop to create 15 cells in each row -->
+                <% for (var j = 0; j < 15; j++) { %>
+                    <td></td>
+                <% } %>
+            </tr>
+        <% } %>
+    </table>
       </div>
 
       <div>

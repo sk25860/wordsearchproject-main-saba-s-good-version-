@@ -21,3 +21,19 @@ export const getWords = async (req, res) => {
 //module.exports = {
   //getWords,
 //};
+
+function createGrid(rows, cols) {
+    var grid = [];
+    for (var i = 0; i < rows; i++) {
+        var row = [];
+        for (var j = 0; j < cols; j++) {
+            row.push(""); // You can initialize each cell with any value you want
+        }
+        grid.push(row);
+    }
+    return grid;
+}
+
+// Example usage:
+var grid = createGrid(15, 15);
+console.log(grid); // This will log the 20x20 grid to the console
