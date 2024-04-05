@@ -18,11 +18,12 @@ router.get('/logout', auth.logout);
 
 
 //pages 
+router.post('/', auth.isAuthenticated, ctrl.home);
 router.get('/', auth.isAuthenticated, ctrl.home);
 router.get('/login-page', ctrl.loginPage);
 
 //game
-router.get('/:category', game.getWords);
+router.post('/word', game.getRelatedWords);
 
             
 export default router;
