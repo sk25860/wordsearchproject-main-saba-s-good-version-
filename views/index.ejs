@@ -10,24 +10,23 @@
   <body>
     <h2>Wordsearch</h2>
     <div class="content">
-      <div id="grid-container">
 
-      </div>
-
+     <form action="/word" method="POST" class="generate-form">
+        <label for="chooseWord">Choose a Word:</label>
+        <input id="chooseWord" type="text" placeholder="duck" name="word">
+        <button type="submit" class="generate-button">Generate</button>
+     </form>
       <div>
         <h3>Words:</h3>
-        <div class="words-conatiner">
-
-        </div>
-
-        <form action="/generate" method="POST" class="generate-form">
-          <button type="submit" class="generate-button">Generate New Wordsearch</button>
-        </form>
-        <h1>hello. this is a further test.</h1>
-
+        <% if (typeof(words) !== undefined) { %>
+          <% for (let i = 0; i < words.length; i++) { %>
+            <p><%= words[i] %></p>
+          <% } %>
+        <% } %>
       </div>
 
     </div>
+
   <script src="/script.js"></script>
   </body>
 </html>

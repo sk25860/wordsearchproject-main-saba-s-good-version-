@@ -1,7 +1,7 @@
 import User from '../Models/User.js';
 
 export const home = async (req, res) => {
-  res.render('index', { isAuthenticated: req.isAuthenticated() });
+  res.render('index', { isAuthenticated: req.isAuthenticated(), words: {} });
 };
 
 export const loginPage = async (req, res) => {
