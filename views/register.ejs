@@ -2,12 +2,14 @@
 <html>
 <head>
     <title>Register</title>
-    <link rel="stylesheet" href="/styles.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Madimi+One&display=swap">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/297392fead.js" crossorigin="anonymous"></script>
 </head>
 <body class="register-body">
+ <div class="login-box">
   <h1 class="register-title">Register</h1>
-  <form action="/register" method="POST">
+  <form action="/register" method="POST" class="logreg-form">
     <div>
        <label for="name">Name:</label>
        <input type="text" id="name" name="name" required>
@@ -22,6 +24,8 @@
     </div>
     <button class="register-button" type="submit">Register</button>
   </form>
+  </div>
   <p>Already have an account? <a href="/login">Login here</a></p>
+
 </body>
 </html>
