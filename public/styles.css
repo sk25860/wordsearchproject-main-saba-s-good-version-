@@ -1,11 +1,7 @@
-@font-face {
-  font-family: Catfiles;
-  src: url('Catfiles.otf');
+body {
+    font-family: 'Exo 2', sans-serif;
 }
-@font-face {
-  font-family: Gilgan;
-  src: url('Gilgan.otf');
-}
+
 
 /*----MAIN----*/
 
@@ -60,9 +56,8 @@ h2 {
 }
 
 .wordlist-word{
-  margin: 5px;
+  margin: 8px;
 }
-
 
 .words-conatiner {
   margin-top: 20px;
