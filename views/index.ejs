@@ -34,9 +34,9 @@
      </form>
       <div>
         <h3>Words:</h3>
-        <% if (typeof(words) !== undefined) { %>
-          <% for (let i = 0; i < words.length; i++) { %>
-            <p><%= words[i] %></p>
+        <% if (typeof relatedWords !== 'undefined') { %>
+          <% for (let i = 0; i < relatedWords.length; i++) { %>
+            <p><%= relatedWords[i] %></p>
           <% } %>
         <% } %>
       </div>

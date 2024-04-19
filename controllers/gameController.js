@@ -26,15 +26,25 @@ var grid = createGrid(15, 15);
 console.log(grid); // This will log the 20x20 grid to the console
 
 export const getRelatedWords = async (req, res) => {
-   const word = req.body.word;
+    const word = req.body.word;
     try {
-        const response = await axios.get(`https://api.datamuse.com/words?rel_jja=${encodeURIComponent(word)}&max=10`);
-       console.log(response); 
-       const words = response.data.map(wordData => wordData.word);
-        res.render('index', { word, words });
+        const response = await axios.get(`https://api.datamuse.com/words?rel_syn=${encodeURIComponent(word)}&max=10`);
+        console.log(response);
+        const relatedWords = response.data.map(wordData => wordData.word);
+        
+        const wordArray = relatedWords.slice(); 
+        wordArray.unshift(word); 
+        
+        
+        const user = await User.findOneAndUpdate(
+            { name: req.user.name }, 
+            { $push: { "Userwords.UserwordArray": wordArray } },
+            { new: true, upsert: true } 
+        );
+        
+        res.render('index', { word, relatedWords });
     } catch (error) {
         console.error(`Failed to fetch ${word}-related words:`, error.message);
         res.status(500).send(`Failed to fetch ${word}-related words`);
     }
 }
-
