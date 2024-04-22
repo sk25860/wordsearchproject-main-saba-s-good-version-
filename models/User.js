@@ -12,7 +12,10 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  password: String
+  password: String, 
+  Userwords: {
+    UserwordArray: [[String]]
+  }
 });
 
 // Check if the model exists before compiling it

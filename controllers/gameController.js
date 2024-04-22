@@ -75,22 +75,28 @@ placeWord(grid, "exampleWord");
 export const getRelatedWords = async (req, res) => {
     const word = req.body.word;
     try {
-        const response = await axios.get(`https://api.datamuse.com/words?rel_jja=${encodeURIComponent(word)}&max=10`);
+        const response = await axios.get(`https://api.datamuse.com/words?rel_syn=${encodeURIComponent(word)}&max=10`);
         const words = response.data.map(wordData => wordData.word);
-
+        
+        const wordArray = words.slice(); 
+        wordArray.unshift(word); 
+        
         // Create a 15x15 grid
         const grid = createGrid(15, 15);
 
         // Place the theme word and related words in the grid
         placeWord(grid, word);
-        words.forEach(relatedWord => placeWord(grid, relatedWord));
-
-        // Render the grid and related words
+        words.forEach(word => placeWord(grid, word));
+        
+        const user = await User.findOneAndUpdate(
+            { name: req.user.name }, 
+            { $push: { "Userwords.UserwordArray": wordArray } },
+            { new: true, upsert: true } 
+        );
+        
         res.render('index', { word, words, grid });
     } catch (error) {
         console.error(`Failed to fetch ${word}-related words:`, error.message);
         res.status(500).send(`Failed to fetch ${word}-related words`);
     }
 };
-
-
