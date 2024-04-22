@@ -42,9 +42,21 @@ export const getRelatedWords = async (req, res) => {
             { new: true, upsert: true } 
         );
         
-        res.render('index', { word, relatedWords });
+        res.render('index', { relatedWords });
     } catch (error) {
         console.error(`Failed to fetch ${word}-related words:`, error.message);
         res.status(500).send(`Failed to fetch ${word}-related words`);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
