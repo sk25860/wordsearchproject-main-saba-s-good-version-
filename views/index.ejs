@@ -1,53 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <title>Wordsearch</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/297392fead.js" crossorigin="anonymous"></script>
-  </head>
-  <body class="main-body">
-    <h2>Wordsearch</h2>
-      <form action="/word" method="POST" class="generate-form">
-        <label for="chooseWord">Choose a Word:</label>
-        <input id="chooseWord" type="text" placeholder="duck" name="word">
-         <br>
-        <button type="submit" class="generate-button">Generate</button>
-     </form>
-    <div class="content">
-      
-      
-
-      <div id="grid-container">
-       <table>
-        <!-- Loop to create 15 rows -->
-        <% for (var i = 0; i < 15; i++) { %>
-            <tr>
-                <!-- Loop to create 15 cells in each row -->
-                <% for (var j = 0; j < 15; j++) { %>
-                    <td></td>
-                <% } %>
-            </tr>
-        <% } %>
-    </table>
-      </div>
-
+</head>
+<body class="main-body">
+<h2>Wordsearch</h2>
+<form action="/word" method="POST" class="generate-form">
+    <label for="chooseWord">Choose a Word:</label>
+    <input id="chooseWord" type="text" placeholder="duck" name="word">
+    <br>
+    <button type="submit" class="generate-button">Generate</button>
+</form>
+<div class="content">
+<div id="grid-container">
+    <% grid.forEach(row => { %>
+        <div class="grid-row">
+            <% row.forEach(cell => { %>
+                <div class="grid-cell"><%= cell %></div>
+            <% }) %>
+        </div>
+    <% }) %>
+</div>
 
     <div class="word-content">
-
-      <div>
-        <h3>Words:</h3>
-        <br>
-        <% if (typeof(words) !== undefined) { %>
-          <% for (let i = 0; i < words.length; i++) { %>
+        <div>
+            <h3>Words:</h3>
+            <br>
+            <% if (typeof words !== 'undefined') { %>
+            <% for (let i = 1; i < words.length; i++) { /* Start from index 1 to exclude the theme word */ %>
             <p><%= words[i] %></p>
-          <% } %>
-        <% } %>
-      </div>
+            <% } %>
+            <% } %>
+        </div>
     </div>
-    </div>
-
-  <script src="/script.js"></script>
-  </body>
+</div>
+<script src="/script.js"></script>
+</body>
 </html>
