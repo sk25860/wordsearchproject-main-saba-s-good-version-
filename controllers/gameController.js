@@ -95,8 +95,15 @@ export const getRelatedWords = async (req, res) => {
         );
         
         res.render('index', { word, words, grid });
+
     } catch (error) {
         console.error(`Failed to fetch ${word}-related words:`, error.message);
         res.status(500).send(`Failed to fetch ${word}-related words`);
     }
+
 };
+
+
+
+
+
