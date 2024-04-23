@@ -1,7 +1,19 @@
-body {
-    font-family: 'Exo 2', sans-serif;
-}
+// <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 100 to 900
 
+.kumbh-sans-<uniquifier> {
+  font-family: "Kumbh Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  font-variation-settings:
+    "YOPQ" 116;
+}
+.bungee-shade-regular {
+  font-family: "Bungee Shade", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
 
 /*----MAIN----*/
 
@@ -12,16 +24,16 @@ body {
   align-items: center;
   text-align: center;
   background-color: #DCCCBB;
-  font-family: Gilgan;
+  font-family: "Kumbh Sans", sans-serif;
 }
 
 h2 {
-  font-family: Catfiles;
   text-align: center;
-  margin-bottom: 20px;
-  font-size: 50px;
+  margin-bottom: none;
+  font-size: 90px;
   color: #333;
   padding: 30px;
+  font-family: "Bungee Shade", serif;
 }
 
 .content {
@@ -42,24 +54,24 @@ h2 {
   display: grid;
   grid-template-columns: repeat(15, 1fr);
   grid-template-rows: repeat(15, 1fr);
-  gap: 1px; /* Gap between grid cells */
   border: 2px solid #243c47;
   padding: 10px;
   margin-right: 30px;
   background-color: #f0ebe6;
+  height: 474px;
 }
 
 .grid-cell {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #243c47;
-  background-color: #ffffff; /* Background color for grid cells */
-  font-family: Gilgan;
+  border: 0.5px solid #243c47;
+  background-color: #ffffff; 
   font-size: 16px;
   color: #333;
   height: 30px;
   width: 30px;
+  margin: none;
 }
 
 
@@ -132,7 +144,6 @@ td {
   align-items: center;
   text-align: center;
   background-color: #DCCCBB;
-  font-family: Gilgan;
 }
 
 .login-box, .register-box {
