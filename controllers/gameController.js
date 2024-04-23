@@ -33,40 +33,53 @@ function placeWord(grid, word) {
     const maxRowIndex = grid.length - 1;
     const maxColIndex = grid[0].length - 1;
 
-    // Randomly choose starting position
-    let startRow = Math.floor(Math.random() * grid.length);
-    let startCol = Math.floor(Math.random() * grid[0].length);
+    let startRow, startCol;
+
+    // Function to check if a word can be placed at the specified position without overlap
+    const canPlaceWord = (row, col, direction) => {
+        if (direction === 'horizontal') {
+            return col + wordLength <= grid[0].length && !grid[row].slice(col, col + wordLength).some(cell => cell !== ' ');
+        } else if (direction === 'vertical') {
+            return row + wordLength <= grid.length && !grid.slice(row, row + wordLength).some(row => row[col] !== ' ');
+        } else if (direction === 'diagonal') {
+            return row + wordLength <= grid.length && col + wordLength <= grid[0].length &&
+                !grid.slice(row, row + wordLength).some((row, i) => row[col + i] !== ' ');
+        }
+        return false;
+    };
+
+    // Function to randomly choose starting position until a valid position is found
+    const findStartPosition = () => {
+        startRow = Math.floor(Math.random() * grid.length);
+        startCol = Math.floor(Math.random() * grid[0].length);
+        while (!canPlaceWord(startRow, startCol, randomDirection)) {
+            startRow = Math.floor(Math.random() * grid.length);
+            startCol = Math.floor(Math.random() * grid[0].length);
+        }
+    };
+
+    findStartPosition();
 
     switch (randomDirection) {
         case 'horizontal':
-            if (startCol + wordLength <= grid[0].length) {
-                for (let i = 0; i < word.length; i++) {
-                    grid[startRow][startCol + i] = word[i];
-                }
+            for (let i = 0; i < word.length; i++) {
+                grid[startRow][startCol + i] = word[i];
             }
             break;
         case 'vertical':
-            if (startRow + wordLength <= grid.length) {
-                for (let i = 0; i < word.length; i++) {
-                    grid[startRow + i][startCol] = word[i];
-                }
+            for (let i = 0; i < word.length; i++) {
+                grid[startRow + i][startCol] = word[i];
             }
             break;
         case 'diagonal':
-            if (startRow + wordLength <= grid.length && startCol + wordLength <= grid[0].length) {
-                for (let i = 0; i < word.length; i++) {
-                    grid[startRow + i][startCol + i] = word[i];
-                }
+            for (let i = 0; i < word.length; i++) {
+                grid[startRow + i][startCol + i] = word[i];
             }
             break;
         default:
             console.error('Invalid direction');
     }
-
-    // Log the grid after placing the word
-    console.log(grid);
 }
-
 // Example usage:
 var grid = createGrid(15, 15);
 placeWord(grid, "exampleWord");
