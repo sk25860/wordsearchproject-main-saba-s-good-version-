@@ -1,8 +1,9 @@
 import User from '../Models/User.js';
+import * as game from '../controllers/gameController.js';
 
 export const home = async (req, res) => {
-
-  res.render('index', { isAuthenticated: req.isAuthenticated(), words: {}, grid: [] });
+   grid = game.createGrid(15, 15);
+  res.render('index', { isAuthenticated: req.isAuthenticated(), words: {}, grid });
 
 };
 

@@ -4,13 +4,16 @@ import axios from 'axios';
 
 const API_BASE_URL = 'https://api.datamuse.com/words';
 
+import * as ctrl from '../controllers/mainController.js';
+
 //module.exports = {
   //getWords,
 //};
 
 
-function createGrid(rows, cols) {
-    var grid = [];
+export function createGrid (rows, cols) {
+   const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+   grid = [];
     for (var i = 0; i < rows; i++) {
         var row = [];
         for (var j = 0; j < cols; j++) {
@@ -18,12 +21,18 @@ function createGrid(rows, cols) {
         }
         grid.push(row);
     }
+    for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < cols; j++) {
+            if (grid[i][j] === " ") {
+                const randomIndex = Math.floor(Math.random() * alphabet.length);
+                grid[i][j] = alphabet[randomIndex];
+            }
+        }
+    }
     return grid;
 }
 
-// Example usage:
-var grid = createGrid(15, 15);
-console.log(grid);
+
 
 
 function placeWord(grid, word) {
@@ -80,9 +89,7 @@ function placeWord(grid, word) {
             console.error('Invalid direction');
     }
 }
-// Example usage:
-var grid = createGrid(15, 15);
-placeWord(grid, "exampleWord");
+
 
 
 export const getRelatedWords = async (req, res) => {
@@ -95,7 +102,7 @@ export const getRelatedWords = async (req, res) => {
         wordArray.unshift(word); 
         
         // Create a 15x15 grid
-        const grid = createGrid(15, 15);
+        
 
         // Place the theme word and related words in the grid
         placeWord(grid, word);
