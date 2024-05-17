@@ -7,10 +7,12 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/297392fead.js" crossorigin="anonymous"></script>
     <style>
+
         @import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Concert+One&family=Kumbh+Sans:wght@100..900&family=Shrikhand&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
     </style>
 </head>
 <body class="main-body light-mode">
+
     <h2>Wordsearch</h2>
     <form action="/word" method="POST" class="generate-form">
         <label for="chooseWord">Choose a Word:</label>
@@ -33,13 +35,16 @@
                 <h3>Words:</h3>
                 <br>
                 <% if (typeof words !== 'undefined') { %>
+
                 <% for (let i = 1; i < words.length; i++) { %>
                 <p><%= words[i] %></p>
                 <% } %>
+
                 <% } %>
             </div>
         </div>
     </div>
+
     <!-- Dark Mode Toggle -->
     <div class="toggle-container">
         <label class="switch">
@@ -48,6 +53,7 @@
         </label>
         
     </div>
+
     <script src="/script.js"></script>
 </body>
 </html>

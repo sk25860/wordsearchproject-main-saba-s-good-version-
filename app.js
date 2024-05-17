@@ -6,15 +6,11 @@ import bcrypt from 'bcrypt';
 import session from 'express-session';
 import configurePassport from './config/passport.js';
 import User from './models/User.js';
-
 import dotenv from 'dotenv'; 
 dotenv.config({ path: 'process.env' });
 
-
 const app = express();
 import routes from './routes/routes.js';
-
-
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URL)
@@ -25,7 +21,7 @@ mongoose.connect(process.env.MONGO_URL)
     console.error('Error connecting to MongoDB:', err);
   });
 
-//Setting Up Passport 
+// Setting Up Passport 
 configurePassport(passport);
 
 // Session setup
@@ -39,11 +35,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-//Express (EJS)
+// Express (EJS)
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
-
 app.set('view engine', 'ejs');
 
 global.grid = [];
@@ -56,13 +50,3 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
-
-
-
-
-
-
-
-
-
