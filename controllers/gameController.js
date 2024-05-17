@@ -47,20 +47,19 @@ function placeWord(grid, word) {
     // Function to check if a word can be placed at the specified position without overlap
     const canPlaceWord = (row, col, direction) => {
         if (direction === 'horizontal') {
-            return col + wordLength <= grid[0].length && !grid[row].slice(col, col + wordLength).some(cell => cell !== ' ');
+            return col + wordLength <= grid[0].length;
         } else if (direction === 'vertical') {
-            return row + wordLength <= grid.length && !grid.slice(row, row + wordLength).some(row => row[col] !== ' ');
+            return row + wordLength <= grid.length;
         } else if (direction === 'diagonal') {
-            return row + wordLength <= grid.length && col + wordLength <= grid[0].length &&
-                !grid.slice(row, row + wordLength).some((row, i) => row[col + i] !== ' ');
+            return row + wordLength <= grid.length && col + wordLength <= grid[0].length;
         }
         return false;
     };
 
     // Function to randomly choose starting position until a valid position is found
     const findStartPosition = () => {
-        startRow = Math.floor(Math.random() * grid.length);
-        startCol = Math.floor(Math.random() * grid[0].length);
+        startRow = Math.floor(Math.random() * grid.length-word.length);
+        startCol = Math.floor(Math.random() * grid[0].length-word.length);
         while (!canPlaceWord(startRow, startCol, randomDirection)) {
             startRow = Math.floor(Math.random() * grid.length);
             startCol = Math.floor(Math.random() * grid[0].length);
@@ -104,7 +103,7 @@ export const getRelatedWords = async (req, res) => {
         // Create a 15x15 grid
         
 
-        // Place the theme word and related words in the grid
+        
         placeWord(grid, word);
         words.forEach(word => placeWord(grid, word));
         
